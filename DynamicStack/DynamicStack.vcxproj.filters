@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack.h">
+    <ClInclude Include="DynamicStack.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

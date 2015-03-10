@@ -4,47 +4,47 @@
 ///  This class stores the node information and a pointer to the previous
 /// element in the stack.
 template <class Element>
-class StackNode
+class DynamicStackNode
 {
 public:
 	/// Class constructor.
-	StackNode();
+	DynamicStackNode();
 
 	/// Class destructor.
-	~StackNode();
+	~DynamicStackNode();
 
 	/// Element to be stored.
 	Element data;
 
 	/// Pointer to previous element.
-	StackNode* link;
+	DynamicStackNode* link;
 };
 
-#pragma region "StackNode implementation"
+#pragma region "DynamicStackNode implementation"
 template <class Element>
-StackNode<Element>::StackNode()
+DynamicStackNode<Element>::DynamicStackNode()
 {
 	link = NULL;
 }
 
 template <class Element>
-StackNode<Element>::~StackNode()
+DynamicStackNode<Element>::~DynamicStackNode()
 {
 }
 
 #pragma endregion
 
-///  This class manages the StackNode objects in order to create a dynamic 
+///  This class manages the DynamicStackNode objects in order to create a dynamic 
 /// heap, with add, get and remove operations concerning to the nodes.
 template <class Element>
-class Stack
+class DynamicStack
 {
 public:
 	/// Class constructor.
-	Stack();
+	DynamicStack();
 
 	/// Class destructor.
-	~Stack();
+	~DynamicStack();
 
 	/// Add an element to the top of the stack.
 	///
@@ -56,7 +56,7 @@ public:
 
 	/// Get the top element of the stack.
 	///
-	/// <returns> Returns StackNode<Element> *top.
+	/// <returns> Returns DynamicStackNode<Element> *top.
 	Element get(void);
 
 	/// Get the size of the stack (aka quantity of nodes).
@@ -65,19 +65,19 @@ public:
 	inline int getSize(void);
 
 	/// Prints all elements of the stack in order using cout. 
-	void printStack(void);
+	void print(void);
 
 private:
 	/// Top node pointer.
-	StackNode<Element> *top;
+	DynamicStackNode<Element> *top;
 
 	/// Size of the stack.
 	int size;
 };
 
-#pragma region "Stack implementation"
+#pragma region "Dynamic stack implementation"
 template <class Element>
-Stack<Element>::Stack()
+DynamicStack<Element>::DynamicStack()
 {
 	// Initializing variables.
 	this->top = NULL;
@@ -85,16 +85,16 @@ Stack<Element>::Stack()
 }
 
 template <class Element>
-Stack<Element>::~Stack()
+DynamicStack<Element>::~DynamicStack()
 {
 	if (top) delete top;
 }
 
 template <class Element>
-void Stack<Element>::add(Element element)
+void DynamicStack<Element>::add(Element element)
 {
-	// Creating auxiliar StackNode.
-	StackNode<Element>* aux = new StackNode<Element>();
+	// Creating auxiliar DynamicStackNode.
+	DynamicStackNode<Element>* aux = new DynamicStackNode<Element>();
 
 	// aux receives the element data and becames the top of the stack.
 	aux->data = element;
@@ -107,7 +107,7 @@ void Stack<Element>::add(Element element)
 }
 
 template <class Element>
-void Stack<Element>::remove(void)
+void DynamicStack<Element>::remove(void)
 {
 	// If the stack is empty, return.
 	if (this->top == NULL)
@@ -115,8 +115,8 @@ void Stack<Element>::remove(void)
 		return;
 	}
 
-	// Creating auxiliar StackNode.
-	StackNode<Element>* aux = this->top->link;
+	// Creating auxiliar DynamicStackNode.
+	DynamicStackNode<Element>* aux = this->top->link;
 
 	// Delete top node.
 	delete top;
@@ -128,19 +128,19 @@ void Stack<Element>::remove(void)
 }
 
 template <class Element>
-Element Stack<Element>::get(void)
+Element DynamicStack<Element>::get(void)
 {
 	return this->top->data;
 }
 
 template <class Element>
-inline int Stack<Element>::getSize(void)
+inline int DynamicStack<Element>::getSize(void)
 {
 	return this->size;
 }
 
 template <class Element>
-void Stack<Element>::printStack(void)
+void DynamicStack<Element>::print(void)
 {
 	if (size == 0)
 	{
@@ -149,7 +149,7 @@ void Stack<Element>::printStack(void)
 	else
 	{
 		int counter = 0;
-		StackNode<Element>* aux = this->top;
+		DynamicStackNode<Element>* aux = this->top;
 		while (true)
 		{
 			cout << "Element " << counter++ << " : " << aux->data << endl;
